@@ -45,11 +45,11 @@ module.exports = async(filePath) => {
 		}
 	}
 
-	fs.writeFile("ultima.csv", csvFileHead+csvFile, (err) => {
+	fs.writeFile("cargas/ultima.csv", csvFileHead+csvFile, (err) => {
 	  if (err) console.log(err);
 		console.log("Se escribio el CSV ultimo");
 
-		fs.appendFile("todas.csv", csvFile, "utf8", (err) =>{
+		fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
 			console.log("Se escribio el CSV total");
 		})
 	});

@@ -5,3 +5,5 @@ services:
          - 8080:8080
     container_name: file-manage
     image: file-manage
+    volumes:
+      - ./cargas:/usr/src/app/cargas

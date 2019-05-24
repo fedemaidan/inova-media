@@ -13,11 +13,11 @@ async function importCsv(req, res) {
 }
 
 function ultimaCarga(req, res) {
-	res.download('ultima.csv', 'ultima.csv')
+	res.download('cargas/ultima.csv', 'ultima.csv')
 }
 
 function todas(req, res) {
-	res.download('todas.csv', 'todas.csv')
+	res.download('cargas/todas.csv', 'todas.csv')
 }
 
 module.exports = router;
