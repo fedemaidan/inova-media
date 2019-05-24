@@ -1,9 +1,22 @@
 const csv= require('csvtojson')
 const fs = require('fs')
 const saveImageFromUrl = require('./saveImageFromUrl')
+const addErrorLine = require('./addErrorLine')
+const setUltimaCantidad = require('./setUltimaCantidad')
+
 
 module.exports = async(filePath) => {
-		
+	
+	fs.writeFile("cargas/errores.csv", "Elemento,Razon,Error sistema", (err) => {
+	  if (err) console.log(err);
+		console.log("Init errores");
+	})
+
+	fs.writeFile("cargas/estado.csv", "Elemento,Estado", (err) => {
+	  if (err) console.log(err);
+		console.log("Init estado");
+	})
+
 	var input = await fs.createReadStream(filePath, 'utf8')
 	var jsonArray = await csv({delimiter: ','}).fromStream(input)
 	var enviadas = 0
@@ -32,16 +45,16 @@ module.exports = async(filePath) => {
 					saveImageFromUrl(urlAntigua,nombreImagen)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow += ","+ urlNueva
+					enviadas++
 				}
 				else {
 					csvRow += ","
 				}
 			}
 		} catch (e) {
-			console.log(e)
+			addErrorLine(json["SKU"], "Falló obteniendo datos imagen", e)
 		} finally {
 			csvFile += csvRow+"\n"
-			enviadas++
 		}
 	}
 
@@ -53,6 +66,8 @@ module.exports = async(filePath) => {
 			console.log("Se escribio el CSV total");
 		})
 	});
+
+	setUltimaCantidad(enviadas)
 
 	return { success: true, enviadas: enviadas }
 };

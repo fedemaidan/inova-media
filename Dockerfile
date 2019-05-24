@@ -7,6 +7,7 @@ RUN npm install cors
 RUN npm i connect-multiparty
 RUN npm i csvtojson
 RUN npm i convert-array-to-csv
+RUN npm install --save cors
 
 
 COPY . .

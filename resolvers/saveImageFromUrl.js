@@ -1,5 +1,8 @@
 var request = require('request');
 var aws = require('aws-sdk');
+const addErrorLine = require('./addErrorLine')
+const addFinalLine = require('./addFinalLine')
+
 
 var s3 = new aws.S3({
   accessKeyId: 'AKIAWN4BQIMGNJ6CKDZG',
@@ -12,11 +15,10 @@ module.exports = (url, nombre) => {
         uri: url,
         encoding: null
     };
-    
+
     request(options, function(error, response, body) {
         if (error || response.statusCode !== 200) { 
-            console.log("failed to get image");
-            console.log(error);
+            addErrorLine(nombre, "Falló obteniendo imagen", error)
         } else {
             s3.putObject({
                 Body: body,
@@ -25,9 +27,10 @@ module.exports = (url, nombre) => {
                 ACL: 'public-read'
             }, function(error, data) { 
                 if (error) {
-                    console.log("error downloading image to s3");
+                    addErrorLine(nombre, "Falló guardando imagen", error)
                 } else {
                     console.log("success uploading to s3 ",nombre);
+                    addFinalLine(nombre, "CORRECTO" )
                 }
             }); 
         }   

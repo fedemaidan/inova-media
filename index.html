@@ -1,6 +1,9 @@
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <style>
@@ -123,7 +126,8 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Inova-media</h5>
-            <form class="form-signin" action="http://localhost:8080/csv/agregar" method="POST" enctype="multipart/form-data">
+            
+            <form class="form-signin" action="http://138.197.68.195:8080/csv/agregar" method="POST" enctype="multipart/form-data">
               <div class="form-label-group">
                 <div class="input-group">
                   <div class="custom-file">
@@ -134,9 +138,34 @@
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Subir archivo</button>
               <hr class="my-4">
-              <a class="btn btn-lg btn-google btn-block text-uppercase" href="http://138.197.68.195:8080/csv/ultimaCarga"> Descargar último</a>
+              <a class="btn btn-lg btn-info btn-block text-uppercase" href="http://138.197.68.195:8080/csv/ultimaCarga"> Descargar último <span class="badge badge-light" id="terminado"></span></a>
               <a class="btn btn-lg btn-facebook btn-block text-uppercase" href="http://138.197.68.195:8080/csv/todas"> Descargar todas</a>
+              <a class="btn btn-lg btn-google btn-block text-uppercase" href="http://138.197.68.195:8080/csv/erroresUltima">Descargar errores última <span class="badge badge-light" id="cantidadErrores"></span></a>
             </form>
+            <script>
+              $(document).ready(function(){ 
+
+                consultarEstado()
+
+                function consultarEstado() {
+                      $.ajax({
+                          url: "http://138.197.68.195:8080/csv/estadoUltima"
+                        }).done(function(data) {
+                            console.log(data)
+                            $("#cantidadErrores").text( data.errores );
+                            var resultado
+                            if (data.terminado)
+                              resultado = "Terminado"
+                            else {
+                              resultado = data.total - data.correctas - data.errores
+                              resultado = "Faltan "+ resultado
+                            }
+                            $("#terminado").text( resultado);
+                            setInterval(consultarEstado, 10000);
+                        });
+                }
+            })
+            </script>
           </div>
         </div>
       </div>
