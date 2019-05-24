@@ -1,0 +1,7 @@
+version: "2"
+services:
+  file-manage:
+    ports:
+         - 8080:8080
+    container_name: file-manage
+    image: file-manage
