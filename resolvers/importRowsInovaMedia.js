@@ -1,5 +1,7 @@
 const csv= require('csvtojson')
 const fs = require('fs')
+var path = require('path')
+
 const saveImageFromUrl = require('./saveImageFromUrl')
 const addErrorLine = require('./addErrorLine')
 const setUltimaCantidad = require('./setUltimaCantidad')
@@ -41,7 +43,7 @@ module.exports = async(filePath) => {
 				var urlAntigua = json[imagen.toString()]
 
 				if (urlAntigua) {
-					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()
+					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
 					saveImageFromUrl(urlAntigua,nombreImagen)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow += ","+ urlNueva
