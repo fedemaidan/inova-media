@@ -29,7 +29,7 @@ module.exports = (url, nombre) => {
                 Bucket: 'inova-media',
                 ACL: 'public-read',
                 Metadata: {
-                    'Content-Type': 'image/'+
+                    'Content-Type': 'image/'+type
                 }
             }, function(error, data) { 
                 if (error) {
