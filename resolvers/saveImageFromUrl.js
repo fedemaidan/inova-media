@@ -20,7 +20,8 @@ module.exports = (url, nombre) => {
         if (error || response.statusCode !== 200) { 
             addErrorLine(nombre, "Falló obteniendo imagen", error)
         } else {
-            var type = path.extname(url).replace(".", ""),
+            var type = path.extname(url).replace(".", "")
+            
             if (type == "jpg")
                 type = "jpeg"
             s3.putObject({
