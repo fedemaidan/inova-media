@@ -21,17 +21,15 @@ module.exports = (url, nombre) => {
             addErrorLine(nombre, "Falló obteniendo imagen", error)
         } else {
             var type = path.extname(url).replace(".", "")
-            
-            if (type == "jpg")
-                type = "jpeg"
+
+           // if (type == "jpg")
+            //    type = "jpeg"
             s3.putObject({
                 Body: body,
                 Key: nombre,
                 Bucket: 'inova-media',
                 ACL: 'public-read',
-                Metadata: {
-                    'Content-Type': 'image/'+type
-                }
+                ContentType: 'image/'+type
             }, function(error, data) { 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen", error)
