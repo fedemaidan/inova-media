@@ -2,7 +2,7 @@ var request = require('request');
 var aws = require('aws-sdk');
 const addErrorLine = require('./addErrorLine')
 const addFinalLine = require('./addFinalLine')
-
+var path = require('path')
 
 var s3 = new aws.S3({
   accessKeyId: 'AKIAWN4BQIMGNJ6CKDZG',
@@ -24,7 +24,10 @@ module.exports = (url, nombre) => {
                 Body: body,
                 Key: nombre,
                 Bucket: 'inova-media',
-                ACL: 'public-read'
+                ACL: 'public-read',
+                Metadata: {
+                    'Content-Type': 'image/'+path.extname(urlAntigua).replace(".", "")
+                }
             }, function(error, data) { 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen", error)
