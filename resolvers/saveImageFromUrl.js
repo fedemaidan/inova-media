@@ -20,13 +20,16 @@ module.exports = (url, nombre) => {
         if (error || response.statusCode !== 200) { 
             addErrorLine(nombre, "Falló obteniendo imagen", error)
         } else {
+            var type = path.extname(url).replace(".", ""),
+            if (type == "jpg")
+                type = "jpeg"
             s3.putObject({
                 Body: body,
                 Key: nombre,
                 Bucket: 'inova-media',
                 ACL: 'public-read',
                 Metadata: {
-                    'Content-Type': 'image/'+path.extname(url).replace(".", "")
+                    'Content-Type': 'image/'+
                 }
             }, function(error, data) { 
                 if (error) {
