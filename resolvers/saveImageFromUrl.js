@@ -26,7 +26,7 @@ module.exports = (url, nombre) => {
                 Bucket: 'inova-media',
                 ACL: 'public-read',
                 Metadata: {
-                    'Content-Type': 'image/'+path.extname(urlAntigua).replace(".", "")
+                    'Content-Type': 'image/'+path.extname(url).replace(".", "")
                 }
             }, function(error, data) { 
                 if (error) {
