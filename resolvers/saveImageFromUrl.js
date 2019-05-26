@@ -5,8 +5,8 @@ const addFinalLine = require('./addFinalLine')
 var path = require('path')
 
 var s3 = new aws.S3({
-  accessKeyId: 'AKIAWN4BQIMGNJ6CKDZG',
-  secretAccessKey: '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',
+  accessKeyId: process.env.accessKeyId,
+  secretAccessKey: process.env.secretAccessKey,
   region: 'us-east-1',
 })
 
