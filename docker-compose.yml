@@ -1,9 +1,7 @@
 version: "2"
 services:
   file-manage:
-    environment:
-      secretAccessKey: ${secretAccessKey}
-      accessKeyId: ${accessKeyId}
+    env_file: .env
     ports:
          - 8080:8080
     container_name: file-manage
