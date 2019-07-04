@@ -19,7 +19,7 @@ module.exports = (url, nombre, pos, jsonArray, ultimo, siguiente) => {
 
     request(options, function(error, response, body) {
         if (error || response.statusCode !== 200) { 
-            addErrorLine(nombre, "Falló obteniendo imagen en pos "+pos, error)
+            addErrorLine(nombre, "Falló obteniendo imagen en pos "+ pos, error)
         } else {
             var type = path.extname(url).replace(".", "")
 
