@@ -10,7 +10,7 @@ var s3 = new aws.S3({
   region: 'us-east-1',
 })
 
-module.exports = (url, nombre) => {
+module.exports = (url, nombre, pos) => {
 	  var options = {
         uri: url,
         encoding: null
@@ -18,7 +18,7 @@ module.exports = (url, nombre) => {
 
     request(options, function(error, response, body) {
         if (error || response.statusCode !== 200) { 
-            addErrorLine(nombre, "Falló obteniendo imagen", error)
+            addErrorLine(nombre, "Falló obteniendo imagen en pos "+pos, error)
         } else {
             var type = path.extname(url).replace(".", "")
 
@@ -32,7 +32,7 @@ module.exports = (url, nombre) => {
                 ContentType: 'image/'+type
             }, function(error, data) { 
                 if (error) {
-                    addErrorLine(nombre, "Falló guardando imagen", error)
+                    addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
                 } else {
                     console.log("success uploading to s3 ",nombre);
                     addFinalLine(nombre, "CORRECTO" )

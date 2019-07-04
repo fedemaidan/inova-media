@@ -26,7 +26,7 @@ module.exports = async(filePath) => {
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
 
-	for (var i = 2001; i < 4000; i++) {
+	for (var i = 0; i < 4000; i++) {
 		var json = jsonArray[i]
 		
 		try {
@@ -44,7 +44,7 @@ module.exports = async(filePath) => {
 
 				if (urlAntigua) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
-					saveImageFromUrl(urlAntigua,nombreImagen)
+					saveImageFromUrl(urlAntigua,nombreImagen,i)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow += ","+ urlNueva
 					enviadas++
