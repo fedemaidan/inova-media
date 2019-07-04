@@ -3,7 +3,7 @@ var aws = require('aws-sdk');
 const addErrorLine = require('./addErrorLine')
 const addFinalLine = require('./addFinalLine')
 var path = require('path')
-const procesarJsonArray = require('./procesarJsonArray')
+
 
 var s3 = new aws.S3({
   accessKeyId: process.env.accessKeyId,
@@ -32,8 +32,10 @@ module.exports = (url, nombre, pos, jsonArray, ultimo) => {
                 ACL: 'public-read',
                 ContentType: 'image/'+type
             }, function(error, data) {
-                if (ultimo)
-                    procesarJsonArray(jsonArray, pos, pos+50) 
+                const procesarJsonArray = require('./procesarJsonArray')
+
+                if (ultimo){        console.log("soy ultimo de "+pos)
+                                    procesarJsonArray(jsonArray, pos, pos+50)} 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
                 } else {
