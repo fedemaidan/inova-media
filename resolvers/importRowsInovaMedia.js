@@ -78,7 +78,7 @@ function procesarJson(json, pos) {
 			fs.appendFile("cargas/ultima.csv", csvRow, "utf8", (err) =>{ 
 				  if (err) console.log(err);
 						
-				fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
+				fs.appendFile("cargas/todas.csv", csvRow, "utf8", (err) =>{
 					console.log("Se escribio el CSV total");
 				})
 		})
