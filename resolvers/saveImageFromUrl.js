@@ -10,13 +10,13 @@ var s3 = new aws.S3({
   region: 'us-east-1',
 })
 
-module.exports = (url, nombre) => {
+module.exports = async (url, nombre) => {
 	  var options = {
         uri: url,
         encoding: null
     };
 
-    request(options, function(error, response, body) {
+    await request(options, function(error, response, body) {
         if (error || response.statusCode !== 200) { 
             addErrorLine(nombre, "Falló obteniendo imagen", error)
         } else {

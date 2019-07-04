@@ -4,6 +4,7 @@ var path = require('path')
 
 const saveImageFromUrl = require('./saveImageFromUrl')
 const addErrorLine = require('./addErrorLine')
+const setUltimaCantidad = require('./setUltimaCantidad')
 
 
 module.exports = async(filePath) => {
@@ -23,7 +24,8 @@ module.exports = async(filePath) => {
 	
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
-
+	var enviadas = 0;
+	
 	jsonArray.forEach( (json) =>  {
 		
 		try {
