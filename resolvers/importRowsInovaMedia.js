@@ -1,6 +1,5 @@
 const csv= require('csvtojson')
 const fs = require('fs')
-var path = require('path')
 
 const setUltimaCantidad = require('./setUltimaCantidad')
 

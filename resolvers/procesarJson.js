@@ -1,6 +1,7 @@
 const saveImageFromUrl = require('./saveImageFromUrl')
 const fs = require('fs')
 const addErrorLine = require('./addErrorLine')
+var path = require('path')
 
 module.exports = (json, pos, jsonArray, ultimo) => {
 
