@@ -42,7 +42,7 @@ function procesarJsonArray(jsonArray, desde, hasta) {
 		var json = jsonArray[i]
 		procesarJson(json,i)
 	}
-
+	console.log("Envie 100")
 	setTimeout(procesarJsonArray(jsonArray, hasta, hasta + 100), 1000)
 }
 
