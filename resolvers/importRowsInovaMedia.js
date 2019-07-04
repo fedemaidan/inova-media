@@ -82,4 +82,5 @@ function procesarJson(json) {
 					console.log("Se escribio el CSV total");
 				})
 		})
+	}
 }
