@@ -25,7 +25,6 @@ module.exports = async(filePath) => {
 	var csvFile = ""
 
 	jsonArray.forEach( (json) =>  {
-		json = jsonArray[i]
 		
 		try {
 			var codigo = json["SKU"]
