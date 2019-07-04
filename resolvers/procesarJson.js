@@ -6,7 +6,6 @@ var path = require('path')
 module.exports = (json, pos, jsonArray, ultimo) => {
 
 		try {
-			console.log(json)
 			var codigo = json["SKU"]
 			var titulo = json["TITULO"].replace(/\s/g,'').replace(/['"]+/g, ''); 
 
