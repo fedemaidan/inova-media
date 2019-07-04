@@ -10,7 +10,7 @@ var s3 = new aws.S3({
   region: 'us-east-1',
 })
 
-module.exports = (url, nombre, pos) => {
+module.exports = (url, nombre, pos, jsonArray, ultimo) => {
 	  var options = {
         uri: url,
         encoding: null
@@ -30,7 +30,9 @@ module.exports = (url, nombre, pos) => {
                 Bucket: 'inova-media',
                 ACL: 'public-read',
                 ContentType: 'image/'+type
-            }, function(error, data) { 
+            }, function(error, data) {
+                if (ultimo)
+                    procesarJsonArray(jsonArray, pos, pos+500) 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
                 } else {
