@@ -23,14 +23,14 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
 					saveImageFromUrl(urlAntigua,nombreImagen,pos, jsonArray, ultimo, siguiente)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
-					csvRow = ","+ urlNueva
+					csvRow += ","+ urlNueva
 				}
 				else {
 					csvRow += ","
 				}
 			}
 
-			fs.appendFile("cargas/ultima.csv", csvRow+"\n", "utf8", (err) =>{if (err)console.log(err)})
+			fs.appendFile("cargas/ultima.csv", csvRow+"\n", "utf8", (err) =>{if (err) console.log(err)})
 		} catch (e) {
 			if (typeof json !== "undefined")
 				addErrorLine(json["SKU"], "Fallo procesando json", e)
