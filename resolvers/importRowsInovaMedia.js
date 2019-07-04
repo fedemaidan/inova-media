@@ -40,13 +40,13 @@ module.exports = async(filePath) => {
 function procesarJsonArray(jsonArray, desde, hasta) {
 	for (var i = desde; i < hasta; i++) {
 		var json = jsonArray[i]
-		procesarJson(json)
+		procesarJson(json,i)
 	}
 
 	setTimeout(procesarJsonArray(jsonArray, hasta, hasta + 100), 1000)
 }
 
-function procesarJson(json) {
+function procesarJson(json, pos) {
 
 		try {
 			var codigo = json["SKU"]
@@ -63,7 +63,7 @@ function procesarJson(json) {
 
 				if (urlAntigua) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
-					saveImageFromUrl(urlAntigua,nombreImagen,desde)
+					saveImageFromUrl(urlAntigua,nombreImagen,pos)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow = ","+ urlNueva
 					enviadas++
