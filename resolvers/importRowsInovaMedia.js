@@ -26,7 +26,7 @@ module.exports = async(filePath) => {
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
 
-	for (var i = 0; i < jsonArray.length; i++) {
+	for (var i = 0; i < 2000; i++) {
 		var json = jsonArray[i]
 		
 		try {
