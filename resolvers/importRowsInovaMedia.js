@@ -29,7 +29,7 @@ module.exports = async(filePath) => {
 	var csvFile = ""
 
 
-	procesarJsonArray(jsonArray, 0, 100)
+	procesarJsonArray(jsonArray, 0, 1000)
 
 	setUltimaCantidad(enviadas)
 
@@ -42,8 +42,8 @@ function procesarJsonArray(jsonArray, desde, hasta) {
 		var json = jsonArray[i]
 		procesarJson(json,i)
 	}
-	console.log("Envie 100")
-	setTimeout(procesarJsonArray(jsonArray, hasta, hasta + 100), 1000)
+	
+	//setTimeout(procesarJsonArray(jsonArray, hasta, hasta + 100), 1000)
 }
 
 function procesarJson(json, pos) {
