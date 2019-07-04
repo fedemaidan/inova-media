@@ -34,7 +34,7 @@ module.exports = (url, nombre) => {
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen", error)
                 } else {
-                    console.log("success uploading to s3 ",nombre);
+                    //console.log("success uploading to s3 ",nombre);
                     addFinalLine(nombre, "CORRECTO" )
                 }
             }); 

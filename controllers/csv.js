@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const importRowsInovaMedia = require('../resolvers/importRowsInovaMedia')
 const getEstadoUltimaCarga = require('../resolvers/getEstadoUltimaCarga')
+const setUltimaCantidad = require('../resolvers/setUltimaCantidad')
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 const fs = require('fs')
@@ -13,6 +14,7 @@ router.get('/todas',todas);
 router.get('/estadoUltima',estadoUltima);
 
 async function importCsv(req, res) {
+	setUltimaCantidad(req.body.cantidad)
 	res.send(await  importRowsInovaMedia(req.files.file.path) )
 }
 

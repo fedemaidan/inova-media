@@ -1,10 +1,9 @@
-const csv= require('csvtojson')
+const csv = require('csvtojson')
 const fs = require('fs')
 var path = require('path')
 
 const saveImageFromUrl = require('./saveImageFromUrl')
 const addErrorLine = require('./addErrorLine')
-const setUltimaCantidad = require('./setUltimaCantidad')
 
 
 module.exports = async(filePath) => {
@@ -26,8 +25,8 @@ module.exports = async(filePath) => {
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
 
-	for (var i = 0; i < jsonArray.length; i++) {
-		var json = jsonArray[i]
+	jsonArray.forEach( (json) =>  {
+		var  = jsonArray[i]
 		
 		try {
 			var codigo = json["SKU"]
@@ -58,7 +57,7 @@ module.exports = async(filePath) => {
 		} finally {
 			csvFile += csvRow+"\n"
 		}
-	}
+	})
 
 	fs.writeFile("cargas/ultima.csv", csvFileHead+csvFile, (err) => {
 	  if (err) console.log(err);
@@ -68,8 +67,6 @@ module.exports = async(filePath) => {
 			console.log("Se escribio el CSV total");
 		})
 	});
-
-	setUltimaCantidad(enviadas)
 
 	return { success: true, enviadas: enviadas }
 };
