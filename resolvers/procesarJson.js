@@ -30,12 +30,6 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 		} catch (e) {
 			addErrorLine(json["SKU"], "Falló obteniendo datos imagen", e)
 		} finally {
-			fs.appendFile("cargas/ultima.csv", csvRow, "utf8", (err) =>{ 
-				  if (err) console.log(err);
-						
-				fs.appendFile("cargas/todas.csv", csvRow, "utf8", (err) =>{
-					console.log("Se escribio el CSV total");
-				})
-		})
+			fs.appendFile("cargas/ultima.csv", csvRow, "utf8", (err) =>{})
 	}
 }
