@@ -20,13 +20,12 @@ module.exports = async(filePath) => {
 
 	var input = await fs.createReadStream(filePath, 'utf8')
 	var jsonArray = await csv({delimiter: ','}).fromStream(input)
-	var enviadas = 0
-
+	
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
 
 	jsonArray.forEach( (json) =>  {
-		var  = jsonArray[i]
+		json = jsonArray[i]
 		
 		try {
 			var codigo = json["SKU"]
@@ -46,7 +45,6 @@ module.exports = async(filePath) => {
 					saveImageFromUrl(urlAntigua,nombreImagen)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow += ","+ urlNueva
-					enviadas++
 				}
 				else {
 					csvRow += ","
@@ -68,5 +66,5 @@ module.exports = async(filePath) => {
 		})
 	});
 
-	return { success: true, enviadas: enviadas }
+	return { success: true }
 };
