@@ -63,7 +63,7 @@ function procesarJson(json) {
 
 				if (urlAntigua) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
-					saveImageFromUrl(urlAntigua,nombreImagen,i)
+					saveImageFromUrl(urlAntigua,nombreImagen,desde)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow = ","+ urlNueva
 					enviadas++
