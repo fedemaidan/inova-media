@@ -24,20 +24,12 @@ module.exports = async(filePath) => {
 	var enviadas = 0
 
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
+	fs.writeFile("cargas/ultima.csv", csvFileHead, "utf8", (err) =>{ if (err) console.log(err)})
+
 	var csvFile = ""
 
 
 	procesarJsonArray(jsonArray, 0, 100)
-
-
-	fs.writeFile("cargas/ultima.csv", csvFileHead+csvFile, (err) => {
-	  if (err) console.log(err);
-		console.log("Se escribio el CSV ultimo");
-
-		fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
-			console.log("Se escribio el CSV total");
-		})
-	});
 
 	setUltimaCantidad(enviadas)
 
@@ -73,7 +65,7 @@ function procesarJson(json) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
 					saveImageFromUrl(urlAntigua,nombreImagen,i)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
-					csvRow += ","+ urlNueva
+					csvRow = ","+ urlNueva
 					enviadas++
 				}
 				else {
@@ -83,6 +75,11 @@ function procesarJson(json) {
 		} catch (e) {
 			addErrorLine(json["SKU"], "Falló obteniendo datos imagen", e)
 		} finally {
-			csvFile += csvRow+"\n"
+			fs.appendFile("cargas/ultima.csv", csvRow, "utf8", (err) =>{ if (err) console.log(err)})
+				  if (err) console.log(err);
+						
+				fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
+					console.log("Se escribio el CSV total");
+				})
 		}
 }
