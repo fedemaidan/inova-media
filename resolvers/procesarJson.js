@@ -30,7 +30,11 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 				}
 			}
 		} catch (e) {
-			addErrorLine(json["SKU"], "Falló obteniendo datos imagen", e)
+			if (json !== "undefined")
+				addErrorLine(json["SKU"], "Fallo procesando json", e)
+			else
+				addErrorLine("json invalido", "Fallo procesando json", e)
+
 		} finally {
 			fs.appendFile("cargas/ultima.csv", csvRow, "utf8", (err) =>{})
 	}
