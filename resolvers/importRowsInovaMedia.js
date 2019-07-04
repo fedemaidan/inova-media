@@ -28,7 +28,7 @@ module.exports = async(filePath) => {
 	var csvFile = ""
 
 
-	procesarJsonArray(jsonArray, 0, 50)
+	procesarJsonArray(jsonArray, 0, 300)
 
 	setUltimaCantidad(enviadas)
 

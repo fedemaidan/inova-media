@@ -36,7 +36,7 @@ module.exports = (url, nombre, pos, jsonArray, ultimo, siguiente) => {
 
                 if (ultimo && !siguiente){        
                     console.log("soy ultimo de "+(pos+1))
-                    procesarJsonArray(jsonArray, (pos+1), (pos+101))
+                    procesarJsonArray(jsonArray, (pos+1), (pos+301))
                 } 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
