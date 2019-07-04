@@ -26,9 +26,36 @@ module.exports = async(filePath) => {
 	var csvFileHead = "SKU, TITULO, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n" 
 	var csvFile = ""
 
-	for (var i = 0; i < 4000; i++) {
+
+	procesarJsonArray(jsonArray, 0, 100)
+
+
+	fs.writeFile("cargas/ultima.csv", csvFileHead+csvFile, (err) => {
+	  if (err) console.log(err);
+		console.log("Se escribio el CSV ultimo");
+
+		fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
+			console.log("Se escribio el CSV total");
+		})
+	});
+
+	setUltimaCantidad(enviadas)
+
+	return { success: true, enviadas: enviadas }
+};
+
+
+function procesarJsonArray(jsonArray, desde, hasta) {
+	for (var i = desde; i < hasta; i++) {
 		var json = jsonArray[i]
-		
+		procesarJson(json)
+	}
+
+	setTimeout(procesarJsonArray(jsonArray, hasta, hasta + 100), 1000)
+}
+
+function procesarJson(json) {
+
 		try {
 			var codigo = json["SKU"]
 			var titulo = json["TITULO"].replace(/\s/g,'').replace(/['"]+/g, ''); 
@@ -58,18 +85,4 @@ module.exports = async(filePath) => {
 		} finally {
 			csvFile += csvRow+"\n"
 		}
-	}
-
-	fs.writeFile("cargas/ultima.csv", csvFileHead+csvFile, (err) => {
-	  if (err) console.log(err);
-		console.log("Se escribio el CSV ultimo");
-
-		fs.appendFile("cargas/todas.csv", csvFile, "utf8", (err) =>{
-			console.log("Se escribio el CSV total");
-		})
-	});
-
-	setUltimaCantidad(enviadas)
-
-	return { success: true, enviadas: enviadas }
-};
+}
