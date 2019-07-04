@@ -35,8 +35,8 @@ module.exports = (url, nombre, pos, jsonArray, ultimo, siguiente) => {
                 const procesarJsonArray = require('./procesarJsonArray')
 
                 if (ultimo && !siguiente){        
-                    console.log("soy ultimo de "+pos+1)
-                    procesarJsonArray(jsonArray, pos+1, pos+100)
+                    console.log("soy ultimo de "+(pos+1))
+                    procesarJsonArray(jsonArray, (pos+1), (pos+101))
                 } 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
