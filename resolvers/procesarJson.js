@@ -6,6 +6,7 @@ var path = require('path')
 module.exports = (json, pos, jsonArray, ultimo) => {
 
 		try {
+			console.log(json)
 			var codigo = json["SKU"]
 			var titulo = json["TITULO"].replace(/\s/g,'').replace(/['"]+/g, ''); 
 
@@ -18,7 +19,7 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 			for (var imagen = 1; imagen <= 10; imagen++) {
 				var urlAntigua = json[imagen.toString()]
 				var siguiente = json[(imagen+1).toString()] ? true : false
-				
+
 				if (urlAntigua) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
 					saveImageFromUrl(urlAntigua,nombreImagen,pos, jsonArray, ultimo, siguiente)
