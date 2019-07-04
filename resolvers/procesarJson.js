@@ -29,7 +29,7 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 					csvRow += ","
 				}
 			}
-			console.log(csvRow)
+			
 			fs.appendFile("cargas/ultima.csv", csvRow+"\n", "utf8", (err) =>{console.log(err)})
 		} catch (e) {
 			if (typeof json !== "undefined")
