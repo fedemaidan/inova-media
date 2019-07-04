@@ -4,6 +4,7 @@ services:
     environment:
       secretAccessKey: ${secretAccessKey}
       accessKeyId: ${accessKeyId}
+    restart: always
     ports:
          - 8080:8080
     container_name: file-manage
