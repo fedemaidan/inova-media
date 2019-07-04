@@ -30,7 +30,7 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 				}
 			}
 		} catch (e) {
-			if (json !== "undefined")
+			if (typeof json !== "undefined")
 				addErrorLine(json["SKU"], "Fallo procesando json", e)
 			else
 				addErrorLine("json invalido", "Fallo procesando json", e)
