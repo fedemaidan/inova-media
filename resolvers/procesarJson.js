@@ -29,8 +29,8 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 					csvRow += ","
 				}
 			}
-			
-			fs.appendFile("cargas/ultima.csv", csvRow+"\n", "utf8", (err) =>{console.log(err)})
+
+			fs.appendFile("cargas/ultima.csv", csvRow+"\n", "utf8", (err) =>{if (err)console.log(err)})
 		} catch (e) {
 			if (typeof json !== "undefined")
 				addErrorLine(json["SKU"], "Fallo procesando json", e)
