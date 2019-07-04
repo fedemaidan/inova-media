@@ -17,10 +17,10 @@ module.exports = (json, pos, jsonArray, ultimo) => {
 
 			for (var imagen = 1; imagen <= 10; imagen++) {
 				var urlAntigua = json[imagen.toString()]
-
+				var siguiente = json[(imagen+1).toString()]
 				if (urlAntigua) {
 					var nombreImagen = codigo+"/"+titulo+"/"+imagen.toString()+path.extname(urlAntigua)
-					saveImageFromUrl(urlAntigua,nombreImagen,pos, jsonArray, ultimo)
+					saveImageFromUrl(urlAntigua,nombreImagen,pos, jsonArray, ultimo, siguiente)
 					var urlNueva = "https://inova-media.s3.amazonaws.com/"+nombreImagen
 					csvRow = ","+ urlNueva
 				}

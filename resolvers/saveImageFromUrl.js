@@ -11,7 +11,7 @@ var s3 = new aws.S3({
   region: 'us-east-1',
 })
 
-module.exports = (url, nombre, pos, jsonArray, ultimo) => {
+module.exports = (url, nombre, pos, jsonArray, ultimo, siguiente) => {
 	  var options = {
         uri: url,
         encoding: null
@@ -34,8 +34,10 @@ module.exports = (url, nombre, pos, jsonArray, ultimo) => {
             }, function(error, data) {
                 const procesarJsonArray = require('./procesarJsonArray')
 
-                if (ultimo){        console.log("soy ultimo de "+pos)
-                                    procesarJsonArray(jsonArray, pos, pos+50)} 
+                if (ultimo && siguiente){        
+                    console.log("soy ultimo de "+pos)
+                    procesarJsonArray(jsonArray, pos+1, pos+50)
+                } 
                 if (error) {
                     addErrorLine(nombre, "Falló guardando imagen en pos "+pos, error)
                 } else {
