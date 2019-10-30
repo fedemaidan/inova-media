@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.16.1",
     "mercadolibre": "0.0.13",
-    "mongoose": "5.0.7",
+    "mongoose": "5.7.7",
     "body-parser": "latest",
     "aws-sdk": "^2.334.0",
     "request": "latest"
